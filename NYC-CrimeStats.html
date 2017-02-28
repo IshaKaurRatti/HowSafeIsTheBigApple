@@ -1,0 +1,436 @@
+<html>
+<head>
+
+	<style>
+		.selection-confirm:hover {
+	    background-color:#101961;
+		}
+	</style> 
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+
+
+	<script type="text/javascript"> 
+
+
+
+	
+	function GenerateMap()
+	{
+		try{
+		//alert("HELOOOOOO")
+		
+
+		var radio_pop_value = $("#dynamicpop").is(":checked");
+		//alert(radio_pop_value)
+
+		//var b = $("#residentpop").val();
+
+		if (radio_pop_value==true) 
+		{
+			//alert("Inside Dynamic")
+			//Open Dynamic Map here
+			$("#map_div").html('<iframe width="100%" height="520" frameborder="0" src="https://ishak.carto.com/viz/67e87320-bf24-11e6-b2ba-0e233c30368f/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>');
+		}
+		else
+		{
+			//alert("Inside Resident")
+			//Open Resident Map here
+			$("#map_div").html('<iframe width="100%" height="520" frameborder="0" src="https://ishak.carto.com/viz/17b1d0aa-bf23-11e6-9fca-0ee66e2c9693/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>');
+		}
+
+		//Reference
+		//Dynamic
+		//<iframe width="100%" height="520" frameborder="0" src="https://ishak.carto.com/viz/67e87320-bf24-11e6-b2ba-0e233c30368f/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+		//Resident
+		//<iframe width="100%" height="520" frameborder="0" src="https://ishak.carto.com/viz/17b1d0aa-bf23-11e6-9fca-0ee66e2c9693/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+	}
+
+		catch(e)
+		{
+			alert(e)
+		}
+	}
+
+
+	//Highcharts Code
+		$(function () {
+
+	
+	    Highcharts.chart('container', {
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: 'Comparison of Seven Major Crimes'
+	        },
+	        subtitle: {
+	            text: 'Source: NYPD CompStat'
+	        },
+	        xAxis: {
+	            categories: [
+	                'Murder',
+	                'Rape',
+	                'Robbery',
+	                'Assault',
+	                'Burglary',
+	                'Grand Larceny',
+	                'GLA'
+	               
+	            ],
+	            crosshair: true
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'Number of Crimes'
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size:10px">{point.key}</span><table border="0">',
+	            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}:</td>' +
+	                '<td style="padding:0" width="50"><b>{point.y:,.0f} </b></td></tr>',
+	            footerFormat: '</table>',
+	            shared: true,
+	            useHTML: true
+	        },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	  	
+	        series: [{
+	            name: 'Brooklyn',
+	            data: [120,413,4503,6019,3849,10662,1949]
+
+	        }, {
+	            name: 'Manhattan',
+	            data: [35,272,2702,3493,2229,15078,702]
+
+	        }, {
+	            name: 'Queens',
+	            data: [44,295,2745,3021,3076,6129,2396]
+
+	        }, {
+	            name: 'Bronx',
+	            data: [94,319,3938,5245,2388,5996,1297]
+
+	        }, {
+	            name: 'Staten Island',
+	            data: [20,45,387,608,467,1115,232]
+
+	        }]
+	    });
+	});
+
+	//Chart 1 - Next to Map
+		$(function () {
+
+		Highcharts.setOptions({
+		lang: {
+    	thousandsSep: ','
+    			}
+		});
+
+
+	    // Create the chart
+	    Highcharts.chart('container1', {
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: 'Division of Crime across Boroughs'
+	        },
+	        subtitle: {
+	            text: ''
+	        },
+	        xAxis: {
+	            type: 'category'
+	           //,crosshair: true
+	        }
+	        ,
+	        yAxis: {
+	            title: {
+	                text: 'Total Crime in City'
+	            }
+
+	        },
+	        legend: {
+	            enabled: false
+	        },
+	        plotOptions: {
+	            series: {
+	                borderWidth: 0,
+	                dataLabels: {
+	                    enabled: true,
+	                    format: '{point.y:,.0f}'
+	                }
+	            }
+	        },
+
+	        tooltip: {
+	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:,.0f}</b><br/>'
+	        },
+
+	        series: [{
+	            name: 'Total Crime',
+	            colorByPoint: true,
+	            data: [{
+	                name: 'Brooklyn',
+	                y: 27515,
+	                drilldown: 'Brooklyn'
+	            }, {
+	                name: 'Manhattan',
+	                y: 24511,
+	                drilldown: 'Manhattan'
+	            }, {
+	                name: 'Queens',
+	                y: 19394,
+	                drilldown: 'Queens'
+	            }, {
+	                name: 'Bronx',
+	                y: 19277,
+	                drilldown: 'Bronx'
+	            }, {
+	                name: 'Staten Island',
+	                y: 2874,
+	                drilldown: 'Staten Island'
+	            }, ]
+	        }],
+	        drilldown: {
+	            series: [{
+	                name: 'Brooklyn',
+	                id: 'Brooklyn'	,
+	                data: [
+	                    [
+	                        'Murder',	
+	                        120
+	                    ],
+	                    [
+	                        'Rape',
+	                        413
+	                    ],
+	                    [
+	                        'Robbery',
+	                        4503
+	                    ],
+	                    [
+	                        'Fel. Assault',
+	                        6019
+	                    ],
+	                    [
+	                        'Burglary',
+	                        3849
+	                    ],
+	                    [
+	                        'Gr. Larceny',
+	                        10662
+	                    ],[
+	                        'G.L.A.',
+	                        1949
+	                    ]
+	                ]
+	            }, {
+	                name: 'Manhattan',
+	                id: 'Manhattan',
+	                data: [
+	                    [
+
+	                        'Murder',	
+	                        35
+	                    ],
+	                    [
+	                        'Rape',
+	                        272
+	                    ],
+	                    [
+	                        'Robbery',
+	                        2702
+	                    ],
+	                    [
+	                        'Fel. Assault',
+	                        3493
+	                    ],
+	                    [
+	                        'Burglary',
+	                        2229
+	                    ],
+	                    [
+	                        'Gr. Larceny',
+	                        15078
+	                    ],[
+	                        'G.L.A.',
+	                        702
+	                    ]
+	                ]
+	            }, {
+	                name: 'Bronx',
+	                id: 'Bronx',
+	                data: [
+	                    [
+
+	                        'Murder',	
+	                        94
+	                    ],
+	                    [
+	                        'Rape',
+	                        319
+	                    ],
+	                    [
+	                        'Robbery',
+	                        3938
+	                    ],
+	                    [
+	                        'Fel. Assault',
+	                        5245
+	                    ],
+	                    [
+	                        'Burglary',
+	                        2388
+	                    ],
+	                    [
+	                        'Gr. Larceny',
+	                        5996
+	                    ],[
+	                        'G.L.A.',
+	                        1297
+	                    ]
+	                ]
+	            }, {
+	                name: 'Staten Island',
+	                id: 'Staten Island',
+	                data: [
+	                    [
+
+	                        'Murder',	
+	                        20
+	                    ],
+	                    [
+	                        'Rape',
+	                        45
+	                    ],
+	                    [
+	                        'Robbery',
+	                        387
+	                    ],
+	                    [
+	                        'Fel. Assault',
+	                        608
+	                    ],
+	                    [
+	                        'Burglary',
+	                        467
+	                    ],
+	                    [
+	                        'Gr. Larceny',
+	                        1115
+	                    ],[
+	                        'G.L.A.',
+	                        232
+	                    ]
+	                ]
+	            }, {
+	                name: 'Queens',
+	                id: 'Queens',
+	                data: [
+	                    [
+
+	                        'Murder',	
+	                        44
+	                    ],
+	                    [
+	                        'Rape',
+	                        295
+	                    ],
+	                    [
+	                        'Robbery',
+	                        2745
+	                    ],
+	                    [
+	                        'Fel. Assault',
+	                        3640
+	                    ],
+	                    [
+	                        'Burglary',
+	                        3024
+	                    ],
+	                    [
+	                        'Gr. Larceny',
+	                        7846
+	                    ],[
+	                        'G.L.A.',
+	                        1800
+	                    ]
+	                
+	                ]
+	            }]
+	        }
+	    });
+	});
+
+	//End of Chart 1
+	</script>
+
+</head>
+
+<body>
+	<table border="0" style="background-color:white; vertical-align: true" width="100%" height="75%" cellpadding="6px" cellspacing="6px">
+	<!--ROW 1 -->
+	<tr>
+		<td colspan="3" style="text-align: center;" height="10px"> <h1>NewYork City Crime Statistics 2016</h1> </td>
+	</tr>
+
+	<tr>
+		<td colspan="3" style="text-align: center;"><hr style="height:5px;border:1px; color:#101961 ;background-color:#101961;" size="8"></td>
+	</tr>
+
+	<!--ROW 3 -->
+	<tr>
+		<td style="width: 60%"> 
+			<text class= "highcharts-title" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size :18px;  
+			text-align:center'> New York City Crime - Heat Map </text><br><br>
+			
+		<!--</td>
+		<td style="width: 45%"> -->
+			
+			<div id="map_div">
+			<iframe width="100%" height="520" frameborder="0" src="https://ishak.carto.com/viz/17b1d0aa-bf23-11e6-9fca-0ee66e2c9693/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+			</div><br>
+			<label class="selection-confirm" title="The number of people who reside in the area.">Resident Population: </label>
+			<input type="radio" id="residentpop" name="radio_pop" value="residentpop" checked= true>&nbsp;&nbsp;
+			
+			<label class="selection-confirm" title="The number of people who are present in an area during normal business hours, including workers.">Dynamic Population: </label>
+			<input type="radio" id="dynamicpop" name="radio_pop" value="dynamicpop" tooltip="scsdvsdvsvsdvsdv"> &nbsp;&nbsp;
+			<input type="button" name="btn_submit" onclick="GenerateMap()" value="Generate Map" style="border-radius: 25px;"><br><br>
+			<label class= "highcharts-title" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size :12px'><i><center> Select one option to get crime rates based on resident population or dynamic population</label></i></center>
+		</td>
+		<td style="width: 55%">
+			<div id="container1" style="min-width: 310px; height: 550px; margin: 0 auto"></div><br>
+			<label class= "highcharts-title" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size :12px'><i><center> Click on each of the bar to get more detailed crime statistics</label></i></center>
+		</td>
+	</tr>
+
+	<tr><td colspan="3"><br></td></tr>
+	
+	<!--ROW 3 -->
+	<tr>
+		<td style="width: 90%" colspan="3">
+			<div id="container"></div>
+			<label class= "highcharts-title" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size :12px'><i><center> Select the borough name to eliminate it from the graph </label></i></center>
+		</td>
+	</tr>
+
+</body>
+
+</html>

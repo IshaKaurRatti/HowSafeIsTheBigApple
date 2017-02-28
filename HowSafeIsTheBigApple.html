@@ -1,0 +1,161 @@
+
+<html>
+
+<head>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+	<script type="text/javascript"> 
+		$(function () {
+
+			Highcharts.setOptions({
+			lang: {
+    		thousandsSep: ','
+    			}
+			});
+
+		    Highcharts.chart('container2', {
+		        title: {
+		            text: 'Historical perspective of Crime across boroughs',
+		            x: -20 //center
+		        },
+		        subtitle: {
+		            text: '',
+		            x: -20
+		        },
+		        xAxis: {
+		            categories: ['1990','1993','1998','2001','2015', '2016']
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'Total number of crimes'
+		            },
+		            plotLines: [{
+		                value: 0,
+		                width: 1,
+		                color: '#808080'
+		            }]
+		        },
+		        tooltip: {
+		            valueSuffix: ''
+		        },
+		        legend: {
+		            layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'middle',
+		            borderWidth: 0
+		        },
+		        series: [{
+		            name: 'Brooklyn',
+		            data: [158388,127267,63472,59688,32555,27515]
+		        },
+		        {
+		            name: 'Manhattan',
+		            data: [148629,114200,57263,43185,26852, 24511]
+		        },  {
+		            name: 'Queens',
+		            data: [125106,108003,51922,38255,21666,19394]
+		        },{
+		            name: 'Bronx',
+		            data: [79825,68327,34921,26913,20813,19277]
+		        }, {
+		            name: 'Staten Island',
+		            data: [15309,12663,5335,4043,3236,2874]
+		        }]
+		    });
+		});
+
+	</script>
+</head>
+
+<body>
+	<table border="0" style="background-color:white; vertical-align: true" width="100%" height="100%" cellpadding="5px" cellspacing="5px">
+	
+	<tr>
+		<td colspan="3" style="text-align: left;"> 
+			<label style="font-family: Palatino Linotype; color: red"> <b>JOUR 779D - STORY TELLING WITH DATA VISUALIZATION </b></label> 
+			<label style="font-family: Courier New">   &nbsp;&nbsp;&nbsp;&nbsp;   <b>Crime and Mayhem</b></label></td>
+	</tr>
+
+	<tr>
+		<td colspan="3"> <label style="font-family: Titillium Web,sans-serif,Helvetica,Arial,sans-serif; font-size: 36px; font-weight: 700; text-align: center;">How Safe is The Big Apple ?</label> </td>
+		<!--<td><img src="BigApple2.jpg" width="650" height="200"></td>-->
+	</tr>
+
+	<tr>
+		<td colspan="3" style="text-align: center;"><hr style="height:10px;border:1px; color:#101961 ;background-color:#101961;"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="3"> 
+			<label style="font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 16px; font-weight: 500; text-align: left;"><B>By Isha Kaur Ratti, Deon Crasto &nbsp; &nbsp; | &nbsp; &nbsp; December 12, 2016 1:00 pm</label>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="3">
+			<hr align="left" style="align:left; height:2px;border:1px; width: 45%;color:#101961 ;background-color:#101961;">
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			<label style="font-family: Georgia,Times New Roman,Times,serif; font-size: 18px; line-height: 30px; color: #2e2925; text-align: justify-all;">
+
+			The New York Police Department (NYPD) has released crime statistics that boast about the historic reduction of crime rates in New York City aka the Big Apple. In the past 25 years, the population in the city increased from 7.3 million to 8.5 million whereas the total crimes have reduced from 530,000 to 93,876, dropping 83% since 1990. One of the reasons for this drop is attributed to CompStat, an initiative by NYPD taken to record all the crimes.
+
+			<p>In spite the historical drop, the distribution of crime differs significantly across the five boroughs. As for 2016, Brooklyn contributed the highest towards the total crimes with 27,215 and Staten Island was the least with 2874 crimes reported. Amongst the seven major felony offenses, the highest number of cases were reported for grand larceny with the maximum of 15,078 in Manhattan. The least number of cases were reported for murder in all the five boroughs.
+
+			 </label>
+		</td>
+
+		<td style="vertical-align: top;"> 
+			<a href="http://www.terpconnect.umd.edu/~ikratti/NYC-CrimeStats.html"> 
+				<img src="BigApple2.jpg">
+				<!--<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
+			</a>
+			<br><label> <i>Click on the image for detailed crime statistics of New York City. (Image Courtesy www.history.com)</i></label>
+		</td>
+	</tr>
+
+	<tr>
+	<td colspan="2">
+			<label style="font-family: Georgia,Times New Roman,Times,serif; font-size: 18px; line-height: 30px; color: #2e2925;">	
+			
+			<p>As much as the raw statistics provide an insight into the crime distribution in all the five boroughs, the population bias cannot be neglected. In order to normalize the number of crimes based on the population, the crime rates were calculated per 1000 residents. The results of this analysis showed a different picture with Manhattan topping the charts. It seemed a little odd as the resident population of Manhattan is about a little more than half of the population of Brooklyn and Queens.
+
+			<p>Further research into it explained the importance of the population statistic that hardly ever gets talked about. According to the American Census Survey, the dynamic population i.e. the commuter adjusted population which includes the number of people that are present during the working hours is about 3.1 million in Manhattan as compared to the resident population of 1.6 million. The high crime rates in Manhattan can thus be attributed to the huge influx of people that come in during the working hours. 
+
+			 </label>
+		</td>
+
+		<td style="vertical-align: top;"> 
+			<!--<a href="http://www.terpconnect.umd.edu/~ikratti/NYC-CrimeStats.html"> 
+				<img src="BigApple2.jpg">
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			</a>-->
+			<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			
+		</td>
+
+	</tr>
+
+	<tr>
+		<td colspan="3">
+			<label style="font-family: Georgia,Times New Roman,Times,serif; font-size: 18px; line-height: 30px; color: #2e2925;">	
+			
+			<p>If one would have to commute the crime statistics based on the dynamic population, we would have Bronx as the highest candidate followed by Brooklyn. In order to avoid any misleading information, it is thus required to take into consideration these two population statistics. However, in both these scenarios Staten Island did prove to be the safest borough of 2016.
+			</label>
+		</td>
+
+	</tr>
+
+	</body>
+</html>
